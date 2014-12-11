@@ -1,0 +1,9 @@
+<%@ page pageEncoding="UTF-8" %>
+<head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SupSMS</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/core/css/all.css"/>
+</head>

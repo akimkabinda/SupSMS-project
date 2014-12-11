@@ -1,0 +1,13 @@
+.content {
+  margin: auto;
+  padding: 30px;
+  max-width: 600px;
+}
+#price .jumbotron {
+  text-align: center;
+}
+
+input{
+    height:45px;
+    font-size: 25px;
+}

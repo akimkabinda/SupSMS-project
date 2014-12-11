@@ -1,0 +1,123 @@
+<h1>Registration</h1>
+<br/>
+<form class="form-horizontal" role="form" action="" method="POST" name="signinForm" novalidate>
+    <input type="hidden" name="form" value="register"/>
+  <div class="form-group"  data-ng-class="{
+          'has-error': signinForm.lastname.$invalid,
+          'has-success': signinForm.lastname.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></div>
+      <input type="text"
+             autofocus="autofocus"
+             required
+             data-ng-maxlength="50"
+             data-ng-minlength="1"
+             data-ng-model="newUser.lastname"
+             data-ng-model-options="{ updateOn: 'blur' }"
+             class="form-control" 
+             name="lastname" 
+             id="lastname" 
+             placeholder="Lastname"/>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{
+          'has-error': signinForm.firstname.$invalid,
+          'has-success': signinForm.firstname.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></div>
+      <input type="text" 
+              required
+              data-ng-maxlength="50"
+              data-ng-minlength="1"
+              data-ng-model="newUser.firstname"
+              data-ng-model-options="{ updateOn: 'blur' }"
+              class="form-control" 
+              name="firstname" 
+              id="firstname" 
+              placeholder="Firstname"/>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{
+          'has-error': signinForm.email.$invalid,
+          'has-success': signinForm.email.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></div>
+      <input type="email" 
+              required
+              data-ng-maxlength="100"
+              data-ng-minlength="1"
+              data-ng-model="newUser.email"
+              data-ng-model-options="{ updateOn: 'blur' }"
+              class="form-control" 
+              name="email" 
+              id="email" 
+              placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{
+          'has-error': signinForm.phone.$invalid,
+          'has-success': signinForm.phone.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+      <input type="text" 
+              required
+              data-ng-maxlength="20"
+              data-ng-minlength="1"
+              data-ng-model="newUser.phone"
+              data-ng-model-options="{ updateOn: 'blur' }"
+              data-phone-validation
+              class="form-control" 
+              name="phone" 
+              id="phone" 
+              placeholder="Phone number"/>
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{
+          'has-error': signinForm.creditcardnumber.$invalid,
+          'has-success': signinForm.creditcardnumber.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
+      <input type="text" 
+              required
+              data-ng-maxlength="30"
+              data-ng-minlength="1"
+              data-ng-model="newUser.creditcardnumber"
+              data-ng-model-options="{ updateOn: 'blur' }"
+              data-phone-validation
+              class="form-control" 
+              name="creditcardnumber" 
+              id="creditcardnumber" 
+              placeholder="Credit Card Number">
+    </div>
+  </div>
+  <div class="form-group" data-ng-class="{
+          'has-error': signinForm.password.$invalid,
+          'has-success': signinForm.password.$valid
+      }">
+    <div class="input-group">
+      <div class="input-group-addon"><span class="glyphicon glyphicon-flash"></span></div>
+      <input type="password" 
+              required
+              data-ng-maxlength="50"
+              data-ng-minlength="1"
+              data-ng-model="newUser.password"
+              data-ng-model-options="{ updateOn: 'blur' }"
+              class="form-control" 
+              name="password" 
+              id="password" 
+              placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div>
+      <button type="submit" 
+              class="btn btn-lg btn-default"
+              ng-disabled="signinForm.$invalid">Sign In</button>
+    </div>
+  </div>
+</form>

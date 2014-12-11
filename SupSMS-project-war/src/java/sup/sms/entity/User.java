@@ -1,0 +1,169 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package sup.sms.entity;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author laurent
+ */
+@Entity
+@Table(name="USERS")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="USER_TYPE")
+public abstract class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String lastname;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String firstname;
+    
+    @NotNull
+    @Size(min = 1, max = 100)
+    private String email;
+    
+    @NotNull
+    @Size(min = 1, max = 20)
+    private String phone;
+
+    @NotNull
+    @Size(min = 1, max = 30)
+    private String creditcardnumber;
+
+    @NotNull
+    @Size(min = 1, max = 50)
+    private String password;
+
+    @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date creationdate;
+    
+    @OneToMany(mappedBy = "owner")
+    private List<Contact> contacts;
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+    
+    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public User setId(Integer id) {
+        this.id = id;return this;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public User setLastname(String lastname) {
+        this.lastname = lastname;return this;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public User setFirstname(String firstname) {
+        this.firstname = firstname;return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;return this;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public User setPhone(String phone) {
+        this.phone = phone;return this;
+    }
+
+    public String getCreditcardnumber() {
+        return creditcardnumber;
+    }
+
+    public User setCreditcardnumber(String creditcardnumber) {
+        this.creditcardnumber = creditcardnumber;return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;return this;
+    }
+
+    public Date getCreationdate() {
+        return creationdate;
+    }
+
+    public User setCreationdate(Date creationdate) {
+        this.creationdate = creationdate;return this;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof User)) {
+            return false;
+        }
+        User other = (User) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+    
+}
