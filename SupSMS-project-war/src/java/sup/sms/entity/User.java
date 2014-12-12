@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,9 +24,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -41,28 +44,23 @@ public abstract class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Lastname is required and contain less than {max} caracters.")
     private String lastname;
 
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Firstname is required and must contain less than {max} caracters.")
     private String firstname;
     
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Email(message = "Email is not well formated.")
+    @Size(min = 1, max = 100, message = "Email is required and must contain less than {max} caracters.")
     private String email;
     
-    @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 10, max = 10, message = "Format phone number must be XXXXXXXXXX formated without seperators.")
     private String phone;
 
-    @NotNull
-    @Size(min = 1, max = 30)
+    @Size(min = 16, max = 16, message = "Credit card number must contain {max} caracters.")
     private String creditcardnumber;
 
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Password must contain between {min} and {max} caracters.")
     private String password;
 
     @NotNull
@@ -71,13 +69,37 @@ public abstract class User implements Serializable {
     
     @OneToMany(mappedBy = "owner")
     private List<Contact> contacts;
+    
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private List<Invoice> invoices;
+
+    public List<Invoice> getInvoices() {
+        return invoices;
+    }
+
+    public void setInvoices(List<Invoice> invoices) {
+        this.invoices = invoices;
+    }
+   
+    
+    private boolean deleted;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public User setDeleted(boolean deleted) {
+        this.deleted = deleted;
+        return this;
+    }
 
     public List<Contact> getContacts() {
         return contacts;
     }
 
-    public void setContacts(List<Contact> contacts) {
+    public User setContacts(List<Contact> contacts) {
         this.contacts = contacts;
+        return this;
     }
     
     

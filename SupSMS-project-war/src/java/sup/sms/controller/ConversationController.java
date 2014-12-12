@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author laurent
  */
-@WebServlet(name = "ConversationController", urlPatterns = {"/conversation"})
+@WebServlet(name = "ConversationController", urlPatterns = {"/app/conversation"})
 public class ConversationController extends HttpServlet {
 
     @Override

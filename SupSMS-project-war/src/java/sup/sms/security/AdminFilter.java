@@ -15,6 +15,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sup.sms.entity.Admin;
+import sup.sms.entity.Client;
+import sup.sms.entity.User;
 
 /**
  *
@@ -32,13 +35,10 @@ public class AdminFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
+        User user = (User)httpRequest.getSession().getAttribute("user");
         
-        if(httpRequest.getSession().getAttribute("user") == null || true) {
-            httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/login");
-            /*if (request instanceof HttpServletRequest){
-                ((HttpServletRequest)request).getRequestURL().toString();
-            }*/
-            
+        if(user == null || user instanceof Client) {
+            httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/login");            
         } else {
             chain.doFilter(request, response);
         }

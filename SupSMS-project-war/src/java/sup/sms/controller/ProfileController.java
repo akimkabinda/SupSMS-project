@@ -6,9 +6,6 @@
 package sup.sms.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Set;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -21,23 +18,23 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import sup.sms.business.IUserBusiness;
-import sup.sms.entity.Client;
 import sup.sms.entity.User;
 import sup.sms.utils.EnumErrorMessage;
+import sup.sms.utils.EnumInfoMessage;
 
 /**
  *
  * @author laurent
  */
-@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
-public class RegisterController extends HttpServlet {
-
+@WebServlet(name = "ProfileController", urlPatterns = {"/app/profile"})
+public class ProfileController extends HttpServlet {
+    
     @EJB
     IUserBusiness userBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/register.jsp").forward(req, resp);
+        req.getRequestDispatcher("/user/profile.jsp").forward(req, resp);
     }
      
     @Override
@@ -45,19 +42,25 @@ public class RegisterController extends HttpServlet {
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         String email = req.getParameter("email");
-        String phone = req.getParameter("phone");
         String creditCardNumber = req.getParameter("creditcardnumber");
-        String password = req.getParameter("password");
 
-        User user = new Client()
-                .setFirstname(firstname)
-                .setLastname(lastname)
-                .setEmail(email)
-                .setPhone(phone)
-                .setCreditcardnumber(creditCardNumber)
-                .setPassword(password)
-                .setCreationdate(new Timestamp(new Date().getTime()))
-                .setDeleted(false);
+        User user = (User)req.getSession().getAttribute("user");
+        
+        if(!user.getFirstname().equals(firstname)){
+            user.setFirstname(firstname);
+        }
+        if(!user.getLastname().equals(lastname)){
+            user.setLastname(lastname);
+        }
+        if(!user.getEmail().equals(email)){
+            user.setEmail(email);
+        }
+        if(!user.getCreditcardnumber().equals(creditCardNumber)){
+            user.setCreditcardnumber(creditCardNumber);
+        }
+        if(!user.getFirstname().equals(firstname)){
+            user.setFirstname(firstname);
+        }
         
         /*VALIDATIONS*/
         ValidatorFactory factory = 
@@ -70,40 +73,30 @@ public class RegisterController extends HttpServlet {
         
         StringBuilder errors = new StringBuilder();
         
-        /*Phone number don't already exist*/
-        if(userBusiness.countByPhone(phone) > 0){
-            errors.append(EnumErrorMessage.Register_PhoneAlreadyExist).append("<br/>");
-        }
-
         if(constraintViolations.size() > 0){
             for (ConstraintViolation<User> constraintViolation : constraintViolations) {
                 errors.append(constraintViolation.getMessage()).append("<br/>");
             }
         }
+        
         req.setAttribute("tempUser", user);
         
         if(errors.toString().length() > 0){
             req.setAttribute("error", errors.toString());
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/user/profile.jsp").forward(req, resp);
             return;
         }
 
         try{
-            User newUser = userBusiness.save(user);
-            if(newUser.getId() != 0){
-                req.getSession().setAttribute("user", newUser);
-                resp.sendRedirect("/app/conversation");
-                return;
-            }else{
-                req.setAttribute("error", EnumErrorMessage.UnexpectedErrorOccured);
-                req.getRequestDispatcher("/register.jsp").forward(req, resp);
-                return;
-            }
+            User newUser = userBusiness.update(user);
+            req.getSession().setAttribute("user", newUser);
+            req.setAttribute("info", EnumInfoMessage.Profile_Updated);
+            req.getRequestDispatcher("/user/profile.jsp").forward(req, resp);
         }catch(Exception e){
             req.setAttribute("error", EnumErrorMessage.UnexpectedErrorOccured);
-            req.getRequestDispatcher("/register.jsp").forward(req, resp);
+            req.getRequestDispatcher("/user/profile.jsp").forward(req, resp);
             return;
         }
     }
-    
+
 }

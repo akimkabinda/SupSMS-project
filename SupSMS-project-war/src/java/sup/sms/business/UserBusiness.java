@@ -33,13 +33,39 @@ public class UserBusiness implements IUserBusiness{
     }
 
     @Override
-    public User signIn(User user) {
+    public User save(User user) {
         return userRepository.save(user);
     }
 
     @Override
     public long countByPhone(String phone) {
         return userRepository.countByPhone(phone);
+    }
+
+    @Override
+    public User find(long id) {
+        return userRepository.find(id);
+    }
+
+    @Override
+    public User update(User user) {
+        return userRepository.update(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public boolean delete(long userId) {
+        try{
+            User user = this.find(userId);
+            userRepository.delete(user);
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
 }

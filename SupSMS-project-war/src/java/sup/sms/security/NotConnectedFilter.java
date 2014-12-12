@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author laurent
  */
-@WebFilter(urlPatterns={"/login","/", "","/register","/price"})
+@WebFilter(urlPatterns={"/login","/register","/price"})
 public class NotConnectedFilter implements Filter{
 
     @Override

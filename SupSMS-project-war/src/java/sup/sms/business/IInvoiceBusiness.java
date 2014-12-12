@@ -5,8 +5,8 @@
  */
 package sup.sms.business;
 
-import java.util.List;
 import javax.ejb.Local;
+import sup.sms.entity.Invoice;
 import sup.sms.entity.User;
 
 /**
@@ -14,12 +14,7 @@ import sup.sms.entity.User;
  * @author laurent
  */
 @Local
-public interface IUserBusiness {
-    User logIn(String phone, String password);
-    User save(User user);
-    long countByPhone(String phone);
-    User find(long id);
-    User update(User user);
-    List<User> findAll();
-    boolean delete(long userId);
+public interface IInvoiceBusiness {
+    boolean invoiceHasBeenPaid(User user);
+    Invoice save(Invoice invoice);
 }

@@ -36,9 +36,10 @@ public class UserRepository{
         
         Predicate phoneFilter = criteriaBuilder.equal(user.get(User_.phone), phone);
         Predicate passwordFilter = criteriaBuilder.equal(user.get(User_.password), password);
-        Predicate phoneAndPasswordFilter = criteriaBuilder.and(phoneFilter, passwordFilter);
+        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
+        Predicate filter = criteriaBuilder.and(phoneFilter, passwordFilter, notDeleted);
         
-        query = query.where(phoneAndPasswordFilter);
+        query.where(filter);
 
         return em.createQuery(query).getResultList();
     }
@@ -50,7 +51,9 @@ public class UserRepository{
         query.select(criteriaBuilder.count(query.from(User.class)));
         Root<User> user = query.from(User.class);
         Predicate phoneFilter = criteriaBuilder.equal(user.get(User_.phone), phone);
-        query.where(phoneFilter);
+        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
+        Predicate filter = criteriaBuilder.and(phoneFilter, notDeleted);
+        query.where(filter);
         
         return em.createQuery(query).getSingleResult();
     }
@@ -58,5 +61,40 @@ public class UserRepository{
     public User save(User user){
         em.persist(user);
         return user;
+    }
+    
+    public User update(User user){
+        em.merge(user);
+        return user;
+    }
+    
+    public User find(long id){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
+        Root<User> user = query.from(User.class);
+        Predicate idFilter = criteriaBuilder.equal(user.get(User_.id), id);
+        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
+        Predicate filter = criteriaBuilder.and(idFilter, notDeleted);
+        query.where(filter);
+        try{
+            return em.createQuery(query).getSingleResult();
+        }catch(Exception e){
+            return null;
+        }
+    }
+    
+    public List<User> findAll(){
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = 
+			criteriaBuilder.createQuery(User.class);
+        Root<User> user = query.from(User.class);
+        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
+        Predicate filter = criteriaBuilder.and(notDeleted);
+        query.where(filter);
+        return em.createQuery(query).getResultList();
+    }
+    
+    public void delete(User user){
+        em.remove(user);
     }
 }

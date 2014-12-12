@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author laurent
  */
 @Entity
-@Table(name = "contact")
+@Table(name = "CONTACT")
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,30 +61,18 @@ public class Contact implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
     
-    @OneToMany(mappedBy = "receiver")
-    private List<Message> messagesReceived;
-    
-    @OneToMany(mappedBy = "transmitter")
-    private List<Message> messagesSent;
+    private boolean deleted;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
     
     @ManyToOne
     private User owner;
-
-    public List<Message> getMessagesReceived() {
-        return messagesReceived;
-    }
-
-    public void setMessagesReceived(List<Message> messagesReceived) {
-        this.messagesReceived = messagesReceived;
-    }
-
-    public List<Message> getMessagesSent() {
-        return messagesSent;
-    }
-
-    public void setMessagesSent(List<Message> messagesSent) {
-        this.messagesSent = messagesSent;
-    }
     
     public Integer getId() {
         return id;
