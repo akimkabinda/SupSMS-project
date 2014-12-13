@@ -91,7 +91,9 @@ public class RegisterController extends HttpServlet {
         try{
             User newUser = userService.save(user);
             if(newUser.getId() != 0){
-                req.getSession().setAttribute("user", newUser);
+                //We get the new user directly in database to have the right context (else error occured during registration)
+                User currentUser = userService.logIn(newUser.getPhone(), newUser.getPassword());
+                req.getSession().setAttribute("user", currentUser);
                 resp.sendRedirect("/app/conversation");
                 return;
             }else{

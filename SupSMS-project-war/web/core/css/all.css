@@ -35,6 +35,14 @@ table .cellContentCentered {
 #index .jumbotron .stats .col-md-6 .desc {
   font-size: 20px;
 }
+#invoice .jumbotron {
+  padding: 20px 0;
+  text-align: center;
+}
+#invoice .jumbotron .creditCard {
+  color: grey;
+  margin-bottom: 10px;
+}
 #conversation table .contact .phone {
   font-size: 12px;
   color: grey;

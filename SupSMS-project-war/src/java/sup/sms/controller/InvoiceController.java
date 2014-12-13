@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.controller.connected;
+package sup.sms.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +18,7 @@ import sup.sms.entity.Invoice;
 import sup.sms.entity.User;
 import sup.sms.service.InvoiceService;
 import sup.sms.utils.EnumErrorMessage;
+import sup.sms.utils.EnumWarningMessage;
 
 /**
  *
@@ -31,12 +32,25 @@ public class InvoiceController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User)req.getSession().getAttribute("user");
+        if(user == null){
+            resp.sendRedirect("/login");
+        }
+        if(invoiceService.invoiceHasBeenPaid(user)){
+            resp.sendRedirect("/app/conversation");
+        }
         req.getRequestDispatcher("/invoice.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User)req.getSession().getAttribute("user");
+        Boolean checked = (req.getParameter("agreement")!=null && req.getParameter("agreement").contentEquals("ok"))?true:null;
+        if(checked == null || !checked){
+            req.setAttribute("warning", EnumWarningMessage.Invoice_PleaseCheck);
+            req.getRequestDispatcher("/invoice.jsp").forward(req, resp);
+            return;
+        }
         
         Invoice invoice = new Invoice()
                 .setBeginDate(new Date())
@@ -48,6 +62,7 @@ public class InvoiceController extends HttpServlet {
             resp.sendRedirect("/app/conversation");
         }catch(Exception e){
             req.setAttribute("error", EnumErrorMessage.UnexpectedErrorOccured);
+            req.getRequestDispatcher("/invoice.jsp").forward(req, resp);
         }
         
     }
