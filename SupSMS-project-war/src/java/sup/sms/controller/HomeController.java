@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.business.IStatsBusiness;
+import sup.sms.service.IStatService;
 
 /**
  *
@@ -23,7 +23,7 @@ import sup.sms.business.IStatsBusiness;
 public class HomeController extends HttpServlet {
 
     @EJB
-    IStatsBusiness statsBusiness;
+    IStatService statsBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

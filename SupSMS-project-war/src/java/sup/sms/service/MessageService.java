@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,7 +22,7 @@ import sup.sms.utils.ConversationFacade;
  * @author laurent
  */
 @Stateless
-public class MessageBusiness implements IMessageBusiness{
+public class MessageService implements IMessageService{
 
     @EJB
     MessageRepository messageRepository;

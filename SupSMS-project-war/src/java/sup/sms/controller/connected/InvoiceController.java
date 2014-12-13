@@ -14,8 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.business.IInvoiceBusiness;
-import sup.sms.business.InvoiceBusiness;
+import sup.sms.service.IInvoiceService;
+import sup.sms.service.InvoiceService;
 import sup.sms.entity.Invoice;
 import sup.sms.entity.User;
 import sup.sms.utils.EnumErrorMessage;
@@ -28,7 +28,7 @@ import sup.sms.utils.EnumErrorMessage;
 public class InvoiceController extends HttpServlet {
 
     @EJB
-    IInvoiceBusiness invoiceBusiness;
+    IInvoiceService invoiceBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

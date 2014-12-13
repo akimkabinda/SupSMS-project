@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
 import java.util.List;
 import javax.ejb.Local;
@@ -14,7 +14,7 @@ import sup.sms.entity.User;
  * @author laurent
  */
 @Local
-public interface IUserBusiness {
+public interface IUserService {
     User logIn(String phone, String password);
     User save(User user);
     long countByPhone(String phone);

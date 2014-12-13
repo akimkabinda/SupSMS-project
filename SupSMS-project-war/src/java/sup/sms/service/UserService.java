@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
 import java.util.List;
 import javax.ejb.EJB;
@@ -18,7 +18,7 @@ import sup.sms.repository.UserRepository;
  * @author laurent
  */
 @Stateless
-public class UserBusiness implements IUserBusiness{
+public class UserService implements IUserService{
 
     @EJB
     UserRepository userRepository;

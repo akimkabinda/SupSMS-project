@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -14,7 +14,7 @@ import sup.sms.repository.StatsRepository;
  * @author laurent
  */
 @Stateless
-public class StatsBusiness implements IStatsBusiness{
+public class StatsService implements IStatService{
 
     @EJB
     StatsRepository statsRepository;

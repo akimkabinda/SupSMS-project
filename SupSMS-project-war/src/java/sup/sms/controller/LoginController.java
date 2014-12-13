@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.business.IUserBusiness;
+import sup.sms.service.IUserService;
 import sup.sms.entity.Client;
 import sup.sms.entity.User;
 import sup.sms.utils.EnumErrorMessage;
@@ -28,7 +28,7 @@ import sup.sms.utils.EnumErrorMessage;
 public class LoginController extends HttpServlet {
 
     @EJB
-    IUserBusiness userBusiness;
+    IUserService userBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

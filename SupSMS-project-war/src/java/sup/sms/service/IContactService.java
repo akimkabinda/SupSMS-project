@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
+import java.util.List;
 import javax.ejb.Local;
+import sup.sms.entity.Contact;
 
 /**
  *
  * @author laurent
  */
 @Local
-public interface IStatsBusiness {
-    long countUsers();
-    long countMessages();
+public interface IContactService {
+    Contact addContact(Contact contact);
+    Contact find(long contactId);
+    List<Contact> getClientContacts(long clientId);
 }

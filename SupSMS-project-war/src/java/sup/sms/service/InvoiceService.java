@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.business;
+package sup.sms.service;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +19,7 @@ import sup.sms.repository.InvoiceRepository;
  * @author laurent
  */
 @Stateless
-public class InvoiceBusiness implements IInvoiceBusiness{
+public class InvoiceService implements IInvoiceService{
 
     @EJB
     InvoiceRepository invoiceRepository;

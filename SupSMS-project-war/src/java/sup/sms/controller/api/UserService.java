@@ -10,7 +10,7 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
-import sup.sms.business.IUserBusiness;
+import sup.sms.service.IUserService;
 import sup.sms.entity.User;
 
 /**
@@ -22,7 +22,7 @@ import sup.sms.entity.User;
 public class UserService {
 
     @EJB
-    IUserBusiness userBusiness;
+    IUserService userBusiness;
     
     @GET
     @Path(value = "login")

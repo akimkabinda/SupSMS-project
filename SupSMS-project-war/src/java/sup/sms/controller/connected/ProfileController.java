@@ -17,7 +17,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import sup.sms.business.IUserBusiness;
+import sup.sms.service.IUserService;
 import sup.sms.entity.User;
 import sup.sms.utils.EnumErrorMessage;
 import sup.sms.utils.EnumInfoMessage;
@@ -30,7 +30,7 @@ import sup.sms.utils.EnumInfoMessage;
 public class ProfileController extends HttpServlet {
     
     @EJB
-    IUserBusiness userBusiness;
+    IUserService userBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

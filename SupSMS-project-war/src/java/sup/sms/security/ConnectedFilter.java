@@ -16,8 +16,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.business.IInvoiceBusiness;
-import sup.sms.business.InvoiceBusiness;
+import sup.sms.service.IInvoiceService;
+import sup.sms.service.InvoiceService;
 import sup.sms.entity.Client;
 import sup.sms.entity.User;
 
@@ -29,7 +29,7 @@ import sup.sms.entity.User;
 public class ConnectedFilter implements Filter{
 
     @EJB
-    IInvoiceBusiness invoiceBusiness;
+    IInvoiceService invoiceBusiness;
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

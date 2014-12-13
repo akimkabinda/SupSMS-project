@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.business.IMessageBusiness;
+import sup.sms.service.IMessageService;
 import sup.sms.entity.User;
 import sup.sms.utils.ConversationFacade;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 public class ConversationController extends HttpServlet {
 
     @EJB
-    IMessageBusiness messageBusiness;
+    IMessageService messageBusiness;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
