@@ -13,27 +13,25 @@
 <% List<User> users = (List<User>)request.getAttribute("users"); %>
 <% SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yy hh:mm"); %>
 <h1>Manage users</h1>
-<p class="bg-success">
-    ADMIN
-</p>
-<p class="bg-info">
-    CLIENT
-</p>
 <table class="table table-striped">
-    <tr>
-        <th>Identity</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Registration date</th>
-        <th>Action</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Identity</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Registration date</th>
+            <th>Invoice is paid</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
     <% for(User u : users){ %>
         <tr class="<%= u instanceof Client ? "info" : "success" %>">
             <td><%= u.getFirstname() %></br><%= u.getLastname()%></td>
             <td><%= u.getEmail()%></td>
             <td><%= u.getPhone()%></td>
             <td><%= formater.format(u.getCreationdate()) %></td>
-            <td>
+            <td class="cellContentCentered">
                 <form action="" method="POST">
                     <input type="hidden" value="delete" name="type"/>
                     <input type="hidden" value="<%= u.getId()%>" name="id"/>
@@ -42,7 +40,16 @@
             </td>
         </tr>
     <%}%>
+    </tbody>
 </table>
+<span class="bg-success">
+    <i class="fa fa-info"></i>
+    Admin
+</span>
+<span class="bg-info">
+    <i class="fa fa-info"></i>
+    Client
+</span>
 
 <c:import url="/include/footer.jsp"/>
  

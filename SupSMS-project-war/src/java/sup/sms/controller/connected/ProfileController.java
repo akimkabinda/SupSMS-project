@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.controller;
+package sup.sms.controller.connected;
 
 import java.io.IOException;
 import java.util.Set;

@@ -13,7 +13,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/app">SupSMS - app</a>
+        <a class="navbar-brand" href="/app/conversation">SupSMS - app</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->

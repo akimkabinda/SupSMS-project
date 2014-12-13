@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.controller;
+package sup.sms.controller.connected;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,12 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author laurent
  */
-@WebServlet(name = "ConversationController", urlPatterns = {"/app/conversation"})
-public class ConversationController extends HttpServlet {
+@WebServlet(name = "ContactsController", urlPatterns = {"/app/contacts"})
+public class ContactsController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/user/conversation.jsp").forward(req, resp);
+        req.getRequestDispatcher("/user/contacts.jsp").forward(req, resp);
     }
 
 }

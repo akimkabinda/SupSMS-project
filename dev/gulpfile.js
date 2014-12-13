@@ -5,7 +5,7 @@ var gulp = require('gulp'),//GULP !!!
     rename = require('gulp-rename');//Rename file
     
 var styleLocation = './*.less';
-var styleDestination = './../web/core/css'; 
+var styleDestination = './../SupSMS-project-war/web/core/css'; 
 
 //Style
 gulp.task('style', function(){

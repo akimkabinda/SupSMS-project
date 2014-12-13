@@ -2,3 +2,4 @@ build
 dist
 nbproject
 SupSMS-project-war/dev/node_modules/*
+dev/node_modules/*

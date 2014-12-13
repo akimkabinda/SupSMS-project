@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sup.sms.controller;
+package sup.sms.controller.admin;
 
 import java.io.IOException;
 import java.util.Set;
@@ -28,7 +28,7 @@ import sup.sms.utils.EnumInfoMessage;
  * @author laurent
  */
 @WebServlet(name = "AdminAppController", urlPatterns = {"/admin/users"})
-public class AdminAppController extends HttpServlet{
+public class AdminController extends HttpServlet{
     
     @EJB
     IUserBusiness userBusiness;

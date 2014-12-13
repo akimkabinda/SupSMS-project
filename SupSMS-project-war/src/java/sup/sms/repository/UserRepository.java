@@ -95,6 +95,7 @@ public class UserRepository{
     }
     
     public void delete(User user){
-        em.remove(user);
+        user.setDeleted(true);
+        em.merge(user);
     }
 }
