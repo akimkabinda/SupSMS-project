@@ -10,7 +10,6 @@ import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
-import sup.sms.service.IUserService;
 import sup.sms.entity.User;
 
 /**
@@ -22,7 +21,7 @@ import sup.sms.entity.User;
 public class UserService {
 
     @EJB
-    IUserService userBusiness;
+    UserService userService;
     
     @GET
     @Path(value = "login")
@@ -30,6 +29,6 @@ public class UserService {
             @DefaultValue("") @QueryParam("phone") String phone,
             @DefaultValue("") @QueryParam("password") String password
     ){
-        return userBusiness.logIn(phone, password);
+        return userService.logIn(phone, password);
     }
 }

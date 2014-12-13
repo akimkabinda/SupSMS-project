@@ -17,8 +17,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import sup.sms.service.IUserService;
 import sup.sms.entity.User;
+import sup.sms.service.UserService;
 import sup.sms.utils.EnumErrorMessage;
 import sup.sms.utils.EnumInfoMessage;
 
@@ -30,7 +30,7 @@ import sup.sms.utils.EnumInfoMessage;
 public class ProfileController extends HttpServlet {
     
     @EJB
-    IUserService userBusiness;
+    UserService userService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -88,7 +88,7 @@ public class ProfileController extends HttpServlet {
         }
 
         try{
-            User newUser = userBusiness.update(user);
+            User newUser = userService.update(user);
             req.getSession().setAttribute("user", newUser);
             req.setAttribute("info", EnumInfoMessage.Profile_Updated);
             req.getRequestDispatcher("/user/profile.jsp").forward(req, resp);

@@ -16,22 +16,19 @@ import sup.sms.repository.ContactRepository;
  * @author laurent
  */
 @Stateless
-public class ContactService implements IContactService{
+public class ContactService{
     
     @EJB
     ContactRepository contactRepository;
 
-    @Override
     public Contact addContact(Contact contact) {
         return contactRepository.addContact(contact);
     }
 
-    @Override
     public Contact find(long contactId) {
         return contactRepository.find(contactId);
     }
 
-    @Override
     public List<Contact> getClientContacts(long clientId) {
         return contactRepository.getClientContact(clientId);
     }

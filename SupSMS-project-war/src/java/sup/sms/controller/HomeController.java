@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.service.IStatService;
+import sup.sms.service.StatsService;
 
 /**
  *
@@ -23,12 +23,12 @@ import sup.sms.service.IStatService;
 public class HomeController extends HttpServlet {
 
     @EJB
-    IStatService statsBusiness;
+    StatsService statsService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("countUsers", String.valueOf(statsBusiness.countUsers()));
-        req.setAttribute("countMessages", String.valueOf(statsBusiness.countMessages()));
+        req.setAttribute("countUsers", String.valueOf(statsService.countUsers()));
+        req.setAttribute("countMessages", String.valueOf(statsService.countMessages()));
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
     }
 

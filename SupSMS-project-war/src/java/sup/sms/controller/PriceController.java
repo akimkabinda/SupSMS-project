@@ -6,17 +6,11 @@
 package sup.sms.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.service.IUserService;
-import sup.sms.entity.Client;
-import sup.sms.entity.User;
 
 @WebServlet(name = "GController", urlPatterns = {"/price"})
 public class PriceController extends HttpServlet {

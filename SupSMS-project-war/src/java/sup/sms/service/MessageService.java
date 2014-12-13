@@ -22,13 +22,11 @@ import sup.sms.utils.ConversationFacade;
  * @author laurent
  */
 @Stateless
-public class MessageService implements IMessageService{
+public class MessageService{
 
     @EJB
     MessageRepository messageRepository;
-    
-    
-    @Override
+
     public List<ConversationFacade> getConversations(User user) {
         //List of conversations
         List<ConversationFacade> conversations = new ArrayList<ConversationFacade>();

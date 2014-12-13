@@ -13,10 +13,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.service.IMessageService;
 import sup.sms.entity.User;
 import sup.sms.utils.ConversationFacade;
 import java.util.List;
+import sup.sms.service.MessageService;
 
 /**
  *
@@ -26,12 +26,12 @@ import java.util.List;
 public class ConversationController extends HttpServlet {
 
     @EJB
-    IMessageService messageBusiness;
+    MessageService messageService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User)req.getSession().getAttribute("user");
-        List<ConversationFacade> conversations = messageBusiness.getConversations(user);
+        List<ConversationFacade> conversations = messageService.getConversations(user);
         req.setAttribute("conversations", conversations);
         req.getRequestDispatcher("/user/conversation.jsp").forward(req, resp);
     }

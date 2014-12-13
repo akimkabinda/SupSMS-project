@@ -20,9 +20,9 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import sup.sms.service.IUserService;
 import sup.sms.entity.Client;
 import sup.sms.entity.User;
+import sup.sms.service.UserService;
 import sup.sms.utils.EnumErrorMessage;
 
 /**
@@ -33,7 +33,7 @@ import sup.sms.utils.EnumErrorMessage;
 public class RegisterController extends HttpServlet {
 
     @EJB
-    IUserService userBusiness;
+    UserService userService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -71,7 +71,7 @@ public class RegisterController extends HttpServlet {
         StringBuilder errors = new StringBuilder();
         
         /*Phone number don't already exist*/
-        if(userBusiness.countByPhone(phone) > 0){
+        if(userService.countByPhone(phone) > 0){
             errors.append(EnumErrorMessage.Register_PhoneAlreadyExist).append("<br/>");
         }
 
@@ -89,7 +89,7 @@ public class RegisterController extends HttpServlet {
         }
 
         try{
-            User newUser = userBusiness.save(user);
+            User newUser = userService.save(user);
             if(newUser.getId() != 0){
                 req.getSession().setAttribute("user", newUser);
                 resp.sendRedirect("/app/conversation");

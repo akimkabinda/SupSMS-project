@@ -19,12 +19,11 @@ import sup.sms.repository.InvoiceRepository;
  * @author laurent
  */
 @Stateless
-public class InvoiceService implements IInvoiceService{
+public class InvoiceService{
 
     @EJB
     InvoiceRepository invoiceRepository;
-    
-    @Override
+
     public boolean invoiceHasBeenPaid(User user) {
         List<Invoice> invoices = user.getInvoices();
         for (Invoice invoice : invoices) {
@@ -35,7 +34,6 @@ public class InvoiceService implements IInvoiceService{
         return false;
     }
 
-    @Override
     public Invoice save(Invoice invoice) {
         return invoiceRepository.save(invoice);
     }

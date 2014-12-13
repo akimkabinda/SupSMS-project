@@ -14,17 +14,15 @@ import sup.sms.repository.StatsRepository;
  * @author laurent
  */
 @Stateless
-public class StatsService implements IStatService{
+public class StatsService{
 
     @EJB
     StatsRepository statsRepository;
-    
-    @Override
+
     public long countUsers() {
         return statsRepository.countUsers();
     }
 
-    @Override
     public long countMessages() {
         return statsRepository.countMessages();
     }

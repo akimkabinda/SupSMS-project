@@ -6,20 +6,13 @@
 package sup.sms.controller.admin;
 
 import java.io.IOException;
-import java.util.Set;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import sup.sms.service.IUserService;
 import sup.sms.service.UserService;
-import sup.sms.entity.User;
 import sup.sms.utils.EnumErrorMessage;
 import sup.sms.utils.EnumInfoMessage;
 
@@ -27,15 +20,15 @@ import sup.sms.utils.EnumInfoMessage;
  *
  * @author laurent
  */
-@WebServlet(name = "AdminAppController", urlPatterns = {"/admin/users"})
+@WebServlet(name = "AdminController", urlPatterns = {"/admin/users"})
 public class AdminController extends HttpServlet{
     
     @EJB
-    IUserService userBusiness;
+    UserService userService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("users", userBusiness.findAll());
+        req.setAttribute("users", userService.findAll());
         req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
     }
     
@@ -45,7 +38,7 @@ public class AdminController extends HttpServlet{
         int id = Integer.parseInt(req.getParameter("id"));
         
         if(type.equals("delete")){
-            if(userBusiness.delete(id)){
+            if(userService.delete(id)){
                 req.setAttribute("info", EnumInfoMessage.Admin_User_Deleted);
                 resp.sendRedirect("/admin/users");
             }else{

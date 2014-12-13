@@ -16,10 +16,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.service.IInvoiceService;
-import sup.sms.service.InvoiceService;
 import sup.sms.entity.Client;
 import sup.sms.entity.User;
+import sup.sms.service.InvoiceService;
 
 /**
  *
@@ -29,7 +28,7 @@ import sup.sms.entity.User;
 public class ConnectedFilter implements Filter{
 
     @EJB
-    IInvoiceService invoiceBusiness;
+    InvoiceService invoiceService;
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -46,7 +45,7 @@ public class ConnectedFilter implements Filter{
             httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/login");
         } else {
             //Invoice test : we detect if the client has already paid his invoice for the current month
-            if(user instanceof Client && !invoiceBusiness.invoiceHasBeenPaid(user)){
+            if(user instanceof Client && !invoiceService.invoiceHasBeenPaid(user)){
                 httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/invoice");
                 return;
             }

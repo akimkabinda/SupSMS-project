@@ -14,10 +14,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.service.IInvoiceService;
-import sup.sms.service.InvoiceService;
 import sup.sms.entity.Invoice;
 import sup.sms.entity.User;
+import sup.sms.service.InvoiceService;
 import sup.sms.utils.EnumErrorMessage;
 
 /**
@@ -28,7 +27,7 @@ import sup.sms.utils.EnumErrorMessage;
 public class InvoiceController extends HttpServlet {
 
     @EJB
-    IInvoiceService invoiceBusiness;
+    InvoiceService invoiceService;
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,7 +43,7 @@ public class InvoiceController extends HttpServlet {
                 .setOwner(user);
         
         try{
-            invoiceBusiness.save(invoice);
+            invoiceService.save(invoice);
             user.getInvoices().add(invoice);
             resp.sendRedirect("/app/conversation");
         }catch(Exception e){
