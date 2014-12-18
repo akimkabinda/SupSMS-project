@@ -39,11 +39,7 @@
                              
                         </td>
                         <td class="cellContentCentered">
-                            <form action="" method="POST">
-                                <input type="hidden" value="see" name="type"/>
-                                <input type="hidden" value="<%= c.getUnknownContact()%>" name="interlocutorPhoneNumber"/>
-                                <input type="submit" value="See" class="btn btn-info btn-xs"/>
-                            </form>
+                            <a class="btn btn-info btn-xs" href="/app/message?interlocutor=<%= c.getUnknownContact()%>">See</a>
                         </td>
                     </tr>
                 <%}%>

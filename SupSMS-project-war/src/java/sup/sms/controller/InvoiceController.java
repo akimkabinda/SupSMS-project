@@ -6,7 +6,6 @@
 package sup.sms.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

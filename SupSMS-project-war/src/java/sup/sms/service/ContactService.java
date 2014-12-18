@@ -27,14 +27,29 @@ public class ContactService{
     @EJB
     ContactRepository contactRepository;
 
+    /**
+     * See repo
+     * @param contact
+     * @return 
+     */
     public Contact addContact(Contact contact) {
-        return contactRepository.addContact(contact);
+        return contactRepository.save(contact);
     }
 
+    /**
+     * See repo
+     * @param contactId
+     * @return 
+     */
     public Contact find(int contactId) {
         return contactRepository.find(contactId);
     }
     
+    /**
+     * See repo
+     * @param contact
+     * @return 
+     */
     public boolean delete(Contact contact) {
         try{
             contactRepository.delete(contact);
@@ -44,18 +59,38 @@ public class ContactService{
         return true;
     }
     
+    /**
+     * See repo
+     * @param user
+     * @return 
+     */
     public List<Contact> findContactsByUser(User user){
         return contactRepository.findContactsByUser(user);
     }
     
+    /**
+     * See repo
+     * @param contact
+     * @return 
+     */
     public Contact save(Contact contact){
         return contactRepository.save(contact);
     }
     
+    /**
+     * See repo
+     * @param contact
+     * @return 
+     */
     public Contact update(Contact contact){
         return contactRepository.update(contact);
     }
     
+    /**
+     * Validation of a contact object according to annotations
+     * @param contact
+     * @return a string who contains all the errors separated by <br/>
+     */
     public String ValidContactObject(Contact contact){
         ValidatorFactory factory = 
                 Validation.buildDefaultValidatorFactory();

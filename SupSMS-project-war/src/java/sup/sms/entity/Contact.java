@@ -17,10 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Email;
 import sup.sms.validator.Phone;
 
 /**
@@ -36,25 +34,20 @@ public class Contact implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; 
 
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Lastname is required and must contain less than {max} caracters.")
     private String contactLastname;
     
-    @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 50, message = "Firstname is required and must contain less than {max} caracters.")
     private String contactFirstname;
     
-    @NotNull
-    @Size(min = 1, max = 100)
+    @Email(message = "Email is not well formated.")
+    @Size(min = 1, max = 100, message = "Email is required and must contain less than {max} caracters.")
     private String contactEmail;
 
-    @NotNull
-    @Size(min = 1, max = 200)
+    @Size(min = 0, max = 200, message = "Address must contain less than {max} caracters.")
     private String contactAddress;
     
     @Phone
-    @NotNull
-    @Size(min = 1, max = 20)
     private String contactPhone;
 
     @NotNull

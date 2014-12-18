@@ -24,6 +24,14 @@ import sup.sms.service.InvoiceService;
  *
  * @author laurent
  */
+/**
+ * Connected page(s) security : if user try to access to an app page 
+ * and is not connected as an client or an admin, 
+ * he will be redirect on the login page
+ * REMARK : we will test for clients that they are already paid the SupSMS service. 
+ * If not they will be redirect on the invoice processing page.
+ * @author laurent
+ */
 @WebFilter(urlPatterns="/app/*")
 public class ConnectedFilter implements Filter{
 

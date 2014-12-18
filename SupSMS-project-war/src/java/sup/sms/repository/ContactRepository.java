@@ -28,15 +28,20 @@ public class ContactRepository {
     @PersistenceContext
     private EntityManager em;
     
-    public Contact addContact(Contact contact){
-        em.persist(contact);
-        return contact;
-    }
-    
+    /**
+     * find a contact by its id
+     * @param contactId
+     * @return 
+     */
     public Contact find(int contactId){
         return em.find(Contact.class, contactId);
     }
     
+    /**
+     * Find user's contacts
+     * @param owner
+     * @return 
+     */
     public List<Contact> findContactsByUser(User owner){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Contact> query = 
@@ -52,16 +57,30 @@ public class ContactRepository {
         return em.createQuery(query).getResultList();
     }
     
+    /**
+     * Delete a contact
+     * @param contact 
+     */
     public void delete(Contact contact){
         contact.setContactDeleted(true);
         em.merge(contact);
     }
     
+    /**
+     * save a contact
+     * @param contact
+     * @return 
+     */
     public Contact save(Contact contact){
         em.persist(contact);
         return contact;
     }
     
+    /**
+     * update a contact
+     * @param contact
+     * @return 
+     */
     public Contact update(Contact contact){
         em.merge(contact);
         return contact;

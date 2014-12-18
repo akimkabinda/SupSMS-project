@@ -5,7 +5,6 @@
  */
 package sup.sms.service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -24,6 +23,11 @@ public class InvoiceService{
     @EJB
     InvoiceRepository invoiceRepository;
 
+    /**
+     * Check if a user has been paid a invoice for the current period
+     * @param user
+     * @return 
+     */
     public boolean invoiceHasBeenPaid(User user) {
         List<Invoice> invoices = user.getInvoices();
         for (Invoice invoice : invoices) {
@@ -34,6 +38,11 @@ public class InvoiceService{
         return false;
     }
 
+    /**
+     * See repo
+     * @param invoice
+     * @return 
+     */
     public Invoice save(Invoice invoice) {
         return invoiceRepository.save(invoice);
     }

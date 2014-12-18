@@ -19,10 +19,18 @@ public class StatsService{
     @EJB
     StatsRepository statsRepository;
 
+    /**
+     * See repo
+     * @return 
+     */
     public long countUsers() {
         return statsRepository.countUsers();
     }
 
+    /**
+     * See repo
+     * @return 
+     */
     public long countMessages() {
         return statsRepository.countMessages();
     }

@@ -14,8 +14,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import sup.sms.entity.Contact;
-import sup.sms.entity.Contact_;
 import sup.sms.entity.Invoice;
 import sup.sms.entity.Invoice_;
 
@@ -29,11 +27,21 @@ public class InvoiceRepository {
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * Save an invoice
+     * @param invoice
+     * @return 
+     */
     public Invoice save(Invoice invoice){
         em.persist(invoice);
         return invoice;
     }
     
+    /**
+     * Get user's invoices order by Begin date DESC
+     * @param userId
+     * @return 
+     */
     public List<Invoice> getInvoicesByUserOrderByBeginDateDesc(long userId){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Invoice> query = 

@@ -12,10 +12,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.constraints.Size;
 
 /**
  *
+ * @author laurent
+ */
+/**
+ * Phone validator annotation interface
  * @author laurent
  */
 @Target( { ElementType.FIELD, ElementType.ANNOTATION_TYPE })

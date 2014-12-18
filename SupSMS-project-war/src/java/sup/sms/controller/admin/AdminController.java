@@ -40,7 +40,7 @@ public class AdminController extends HttpServlet{
         if(type.equals("delete")){
             if(userService.delete(id)){
                 req.setAttribute("info", EnumInfoMessage.Admin_User_Deleted);
-                resp.sendRedirect("/admin/users");
+                req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
             }else{
                 req.setAttribute("error", EnumErrorMessage.UnexpectedErrorOccured);
                 req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);

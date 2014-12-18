@@ -6,13 +6,17 @@
 package sup.sms.utils;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 import sup.sms.entity.Contact;
 import sup.sms.entity.Message;
 
 /**
  *
+ * @author laurent
+ */
+/**
+ * Facade which contain conversation data.
+ * This facade will be return to the conversation page according to each user's conversations
  * @author laurent
  */
 public class ConversationFacade implements Serializable{

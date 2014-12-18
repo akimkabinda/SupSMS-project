@@ -15,12 +15,17 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import sup.sms.entity.Admin;
 import sup.sms.entity.Client;
 import sup.sms.entity.User;
 
 /**
  *
+ * @author laurent
+ */
+/**
+ * Admin page(s) security : if user try to access to an admin page 
+ * and is not connected as an admin, 
+ * he will be redirect on the login page
  * @author laurent
  */
 @WebFilter(urlPatterns="/admin/*")

@@ -14,7 +14,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import sup.sms.entity.Message;
-import sup.sms.entity.Message_;
 import sup.sms.entity.User;
 import sup.sms.entity.User_;
 
@@ -29,6 +28,10 @@ public class StatsRepository {
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * Count SupSMS users
+     * @return 
+     */
     public long countUsers(){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         
@@ -41,6 +44,10 @@ public class StatsRepository {
         return em.createQuery(query).getSingleResult();
     }
     
+    /**
+     * Count SupSMS messages
+     * @return 
+     */
     public long countMessages(){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         

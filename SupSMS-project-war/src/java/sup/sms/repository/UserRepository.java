@@ -28,6 +28,12 @@ public class UserRepository{
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * find user by phone and password
+     * @param phone
+     * @param password
+     * @return 
+     */
     public List<User> findByPhoneAndPassword(String phone, String password) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = 
@@ -44,6 +50,11 @@ public class UserRepository{
         return em.createQuery(query).getResultList();
     }
     
+    /**
+     * count user with a special phone number
+     * @param phone
+     * @return 
+     */
     public long countByPhone(String phone){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         
@@ -58,16 +69,31 @@ public class UserRepository{
         return em.createQuery(query).getSingleResult();
     }
     
+    /**
+     * save new user
+     * @param user
+     * @return 
+     */
     public User save(User user){
         em.persist(user);
         return user;
     }
     
+    /**
+     * update a user
+     * @param user
+     * @return 
+     */
     public User update(User user){
         em.merge(user);
         return user;
     }
     
+    /**
+     * Find user by its id
+     * @param id
+     * @return 
+     */
     public User find(long id){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = criteriaBuilder.createQuery(User.class);
@@ -83,6 +109,10 @@ public class UserRepository{
         }
     }
     
+    /**
+     * find all users by their id
+     * @return 
+     */
     public List<User> findAll(){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<User> query = 
@@ -94,23 +124,13 @@ public class UserRepository{
         return em.createQuery(query).getResultList();
     }
     
+    /**
+     * delete user
+     * @param user 
+     */
     public void delete(User user){
         user.setDeleted(true);
         em.merge(user);
     }
     
-    public List<User> findByPhone(String phone) {
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<User> query = 
-			criteriaBuilder.createQuery(User.class);
-        Root<User> user = query.from(User.class);
-        
-        Predicate phoneFilter = criteriaBuilder.equal(user.get(User_.phone), phone);
-        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
-        Predicate filter = criteriaBuilder.and(phoneFilter, notDeleted);
-        
-        query.where(filter);
-
-        return em.createQuery(query).getResultList();
-    }
 }

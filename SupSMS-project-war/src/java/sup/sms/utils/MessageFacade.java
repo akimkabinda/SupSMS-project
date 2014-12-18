@@ -11,6 +11,10 @@ import java.io.Serializable;
  *
  * @author laurent
  */
+/**
+ * Facade to get post message dat through the api
+ * @author laurent
+ */
 public class MessageFacade implements Serializable{
     private String message;
 

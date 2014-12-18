@@ -9,6 +9,10 @@ package sup.sms.utils;
  *
  * @author laurent
  */
+/**
+ * Info messages
+ * @author laurent
+ */
 public class EnumInfoMessage {
     public static final String Profile_Updated = "Profile updated.";
     public static final String Admin_User_Deleted = "User deleted.";

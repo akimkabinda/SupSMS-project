@@ -20,6 +20,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author laurent
  */
+/**
+ * If a connected user try to access to the page which not required any connexion : 
+ * user wil be redirect on the app/conversation page.
+ * @author laurent
+ */
 @WebFilter(urlPatterns={"/login","/register","/price"})
 public class NotConnectedFilter implements Filter{
 

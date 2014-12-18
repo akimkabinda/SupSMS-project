@@ -7,13 +7,16 @@ package sup.sms.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.faces.application.FacesMessage;
-import javax.faces.validator.ValidatorException;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
  *
+ * @author laurent
+ */
+/**
+ * Phone validator annotation implementation
+ * A phone number is composed by 10 digits and begin by 0
  * @author laurent
  */
 public class PhoneValidator implements ConstraintValidator<Phone, String>{

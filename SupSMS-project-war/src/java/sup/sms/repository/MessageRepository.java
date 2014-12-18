@@ -6,7 +6,6 @@
 package sup.sms.repository;
 
 import java.util.List;
-import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,11 +14,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import sup.sms.entity.Contact;
 import sup.sms.entity.Message;
 import sup.sms.entity.Message_;
 import sup.sms.entity.User;
-import sup.sms.entity.User_;
 
 /**
  *
@@ -31,6 +28,11 @@ public class MessageRepository {
     @PersistenceContext
     private EntityManager em;
     
+    /**
+     * find user's messages send or received
+     * @param user
+     * @return 
+     */
     public List<Message> findMessageByUser(User user){
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Message> query = 
@@ -109,10 +111,20 @@ public class MessageRepository {
         return em.createQuery(query).getResultList();
     }
     
+    /**
+     * find message by its id
+     * @param messageId
+     * @return 
+     */
     public Message find(long messageId){
         return em.find(Message.class, messageId);
     }
     
+    /**
+     * save a new message
+     * @param message
+     * @return 
+     */
     public Message save(Message message){
         em.persist(message);
         return message;
