@@ -45,7 +45,7 @@ public class MessageService{
                 ConversationFacade conversationFacade = new ConversationFacade();
                 //Try to find in our contacts list
                 for (Contact myContact : myContacts) {
-                    if(myContact.getPhone().equals(interlocutorPhoneNumber)){
+                    if(myContact.getPhone().equals(interlocutorPhoneNumber) && !myContact.isDeleted()){
                         conversationFacade.setContact(myContact);
                     }
                 }

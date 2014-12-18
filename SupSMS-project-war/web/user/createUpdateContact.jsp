@@ -1,17 +1,22 @@
+<%@page import="sup.sms.entity.Contact"%>
 <%@page import="sup.sms.entity.User"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:import url="/include/header.jsp">
-    <c:param name="title" value="Register" />
+<c:import url="../include/header.jsp">
+    <c:param name="title" value="Message" />
 </c:import>
-<c:import url="/menus/index_menu.jsp"/>
-<c:import url="/include/notifications.jsp"/>
+<c:import url="../menus/app_menu.jsp"/>
+<c:import url="../include/notifications.jsp"/>
 
-<% User tempUser = (User)request.getAttribute("tempUser"); %>
+<% String warning = (String)request.getAttribute("warning"); %>
+<% int contactToUpdate = request.getParameter("contactId") != null ? Integer.parseInt(request.getParameter("contactId")) : 0; %>
+<% Contact tempContact = (Contact)request.getAttribute("tempContact"); %>
 
-<h1>Registration</h1>
+<h1>Contact</h1>
 <br/>
-<form class="form-horizontal" role="form" action="" method="POST" name="signinForm">
+<%if (warning == null) {%>
+<form class="form-horizontal" role="form" action="" method="POST" name="contactForm">
+  <input type="hidden" name="id" value="<%= contactToUpdate %>"/>
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></div>
@@ -22,7 +27,7 @@
              name="lastname" 
              id="lastname" 
              placeholder="Lastname"
-             value="<%= tempUser == null ? "" : tempUser.getLastname() %>"/>
+             value="<%= tempContact != null ? tempContact.getLastname() : "" %>"/>
     </div>
   </div>
   <div class="form-group">
@@ -34,7 +39,7 @@
               name="firstname" 
               id="firstname" 
               placeholder="Firstname"
-              value="<%= tempUser == null ? "" : tempUser.getFirstname()%>"/>
+              value="<%= tempContact != null ? tempContact.getFirstname(): "" %>"/>
     </div>
   </div>
   <div class="form-group">
@@ -46,7 +51,7 @@
               name="email" 
               id="email" 
               placeholder="Email"
-              value="<%= tempUser == null ? "" : tempUser.getEmail()%>">
+              value="<%= tempContact != null ? tempContact.getEmail() : "" %>">
     </div>
   </div>
   <div class="form-group">
@@ -54,43 +59,32 @@
       <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
       <input type="text" 
               required
+              data-phone-validation
               class="form-control" 
               name="phone" 
               id="phone" 
               placeholder="Phone number"
-              value="<%= tempUser == null ? "" : tempUser.getPhone()%>"/>
+              value="<%= tempContact != null ? tempContact.getPhone() : "" %>"/>
     </div>
   </div>
   <div class="form-group">
     <div class="input-group">
-      <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
+      <div class="input-group-addon"><span class="fa fa-home"></span></div>
       <input type="text" 
               required
               class="form-control" 
-              name="creditcardnumber" 
+              name="address" 
               id="creditcardnumber" 
-              placeholder="Credit Card Number"
-              value="<%= tempUser == null ? "" : tempUser.getCreditcardnumber()%>">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="input-group">
-      <div class="input-group-addon"><span class="glyphicon glyphicon-flash"></span></div>
-      <input type="password" 
-              required
-              class="form-control" 
-              name="password" 
-              id="password" 
-              placeholder="Password">
+              placeholder="Address"
+              value="<%= tempContact != null ? tempContact.getAddress() : ""%>">
     </div>
   </div>
   <div class="form-group">
     <div>
       <input type="submit" 
-             class="btn btn-lg btn-default" value="Sign In" />
+             class="btn btn-lg btn-default" value="<%= contactToUpdate != 0 ? "Update" : "Create" %> contact" />
     </div>
   </div>
 </form>
-                  
+<%}%>
 <c:import url="/include/footer.jsp"/>
- 

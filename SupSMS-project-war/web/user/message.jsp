@@ -6,7 +6,10 @@
 <c:import url="../menus/app_menu.jsp"/>
 <c:import url="../include/notifications.jsp"/>
     
+<div id="message">
     <h1>Message</h1>
+    
+</div>
 
 <c:import url="/include/footer.jsp"/>
  

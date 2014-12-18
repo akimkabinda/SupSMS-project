@@ -46,7 +46,5 @@ public class AdminController extends HttpServlet{
                 req.getRequestDispatcher("/admin/users.jsp").forward(req, resp);
             }
         }
-
-        
     }
 }

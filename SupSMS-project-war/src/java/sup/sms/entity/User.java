@@ -29,6 +29,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.validator.constraints.Email;
+import sup.sms.validator.Phone;
 
 /**
  *
@@ -54,7 +55,7 @@ public abstract class User implements Serializable {
     @Size(min = 1, max = 100, message = "Email is required and must contain less than {max} caracters.")
     private String email;
     
-    @Size(min = 10, max = 10, message = "Format phone number must be XXXXXXXXXX formated without seperators.")
+    @Phone
     private String phone;
 
     @Size(min = 16, max = 16, message = "Credit card number must contain {max} caracters.")

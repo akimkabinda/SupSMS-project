@@ -15,6 +15,7 @@
 
     <div id="conversation">
         <h1>Conversations</h1>
+        <a href="/app/message" class="btn btn-default btn-lg">New message</a>
         <table class="table">
             <thead>
                 <tr>

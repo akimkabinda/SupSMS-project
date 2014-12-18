@@ -12,4 +12,5 @@ package sup.sms.utils;
 public class EnumInfoMessage {
     public static final String Profile_Updated = "Profile updated.";
     public static final String Admin_User_Deleted = "User deleted.";
+    public static final String Contact_Deleted = "Contact deleted.";
 }

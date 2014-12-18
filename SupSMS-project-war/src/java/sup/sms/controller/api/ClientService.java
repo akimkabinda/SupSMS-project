@@ -23,9 +23,9 @@ public class ClientService {
     @EJB
     ContactService contactService;
     
-    @GET
+    /*@GET
     @Path(value = "contacts")
     public List<Contact> GetContacts(@PathParam("id") long clientId){
         return contactService.getClientContacts(clientId);
-    }
+    }*/
 }

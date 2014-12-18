@@ -7,23 +7,17 @@ package sup.sms.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import sup.sms.validator.Phone;
 
 /**
  *
@@ -53,6 +47,7 @@ public class Contact implements Serializable {
     @Size(min = 1, max = 200)
     private String address;
     
+    @Phone
     @NotNull
     @Size(min = 1, max = 20)
     private String phone;
@@ -67,8 +62,9 @@ public class Contact implements Serializable {
         return deleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public Contact setDeleted(boolean deleted) {
         this.deleted = deleted;
+        return this;
     }
     
     @ManyToOne
@@ -134,8 +130,9 @@ public class Contact implements Serializable {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public Contact setOwner(User owner) {
         this.owner = owner;
+        return this;
     }
 
     
