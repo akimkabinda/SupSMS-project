@@ -5,7 +5,9 @@
  */
 package sup.sms.utils;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import sup.sms.entity.Contact;
 import sup.sms.entity.Message;
 
@@ -13,7 +15,8 @@ import sup.sms.entity.Message;
  *
  * @author laurent
  */
-public class ConversationFacade {
+public class ConversationFacade implements Serializable{
+    private static final long serialVersionUID = 1L;
     private Contact contact;
     private String unknownContact;
     private Message LastMessage;
@@ -23,36 +26,66 @@ public class ConversationFacade {
         return contact;
     }
 
-    public ConversationFacade setContact(Contact contact) {
+    public void setContact(Contact contact) {
         this.contact = contact;
-        return this;
     }
 
     public Message getLastMessage() {
         return LastMessage;
     }
 
-    public ConversationFacade setLastMessage(Message LastMessage) {
+    public void setLastMessage(Message LastMessage) {
         this.LastMessage = LastMessage;
-        return this;
     }
 
     public int getMessageCount() {
         return messageCount;
     }
 
-    public ConversationFacade setMessageCount(int messageCount) {
+    public void setMessageCount(int messageCount) {
         this.messageCount = messageCount;
-        return this;
     }
 
     public String getUnknownContact() {
         return unknownContact;
     }
 
-    public ConversationFacade setUnknownContact(String unknownContact) {
+    public void setUnknownContact(String unknownContact) {
         this.unknownContact = unknownContact;
-        return this;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.contact);
+        hash = 97 * hash + Objects.hashCode(this.unknownContact);
+        hash = 97 * hash + Objects.hashCode(this.LastMessage);
+        hash = 97 * hash + this.messageCount;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ConversationFacade other = (ConversationFacade) obj;
+        if (!Objects.equals(this.contact, other.contact)) {
+            return false;
+        }
+        if (!Objects.equals(this.unknownContact, other.unknownContact)) {
+            return false;
+        }
+        if (!Objects.equals(this.LastMessage, other.LastMessage)) {
+            return false;
+        }
+        if (this.messageCount != other.messageCount) {
+            return false;
+        }
+        return true;
     }
     
     

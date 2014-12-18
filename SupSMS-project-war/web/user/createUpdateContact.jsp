@@ -27,7 +27,7 @@
              name="lastname" 
              id="lastname" 
              placeholder="Lastname"
-             value="<%= tempContact != null ? tempContact.getLastname() : "" %>"/>
+             value="<%= tempContact != null ? tempContact.getContactLastname(): "" %>"/>
     </div>
   </div>
   <div class="form-group">
@@ -39,7 +39,7 @@
               name="firstname" 
               id="firstname" 
               placeholder="Firstname"
-              value="<%= tempContact != null ? tempContact.getFirstname(): "" %>"/>
+              value="<%= tempContact != null ? tempContact.getContactFirstname(): "" %>"/>
     </div>
   </div>
   <div class="form-group">
@@ -51,7 +51,7 @@
               name="email" 
               id="email" 
               placeholder="Email"
-              value="<%= tempContact != null ? tempContact.getEmail() : "" %>">
+              value="<%= tempContact != null ? tempContact.getContactEmail(): "" %>">
     </div>
   </div>
   <div class="form-group">
@@ -64,7 +64,7 @@
               name="phone" 
               id="phone" 
               placeholder="Phone number"
-              value="<%= tempContact != null ? tempContact.getPhone() : "" %>"/>
+              value="<%= tempContact != null ? tempContact.getContactPhone(): "" %>"/>
     </div>
   </div>
   <div class="form-group">
@@ -76,7 +76,7 @@
               name="address" 
               id="creditcardnumber" 
               placeholder="Address"
-              value="<%= tempContact != null ? tempContact.getAddress() : ""%>">
+              value="<%= tempContact != null ? tempContact.getContactAddress(): ""%>">
     </div>
   </div>
   <div class="form-group">

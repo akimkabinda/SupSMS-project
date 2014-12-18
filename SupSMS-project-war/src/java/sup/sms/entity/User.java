@@ -68,11 +68,11 @@ public abstract class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationdate;
     
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "contactOwner")
     private List<Contact> contacts;
     
     @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
-    private List<Invoice> invoices;
+    private List<Invoice> invoices; 
 
     public List<Invoice> getInvoices() {
         return invoices;

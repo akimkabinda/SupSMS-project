@@ -6,6 +6,7 @@
 package sup.sms.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ import sup.sms.entity.Message;
 import sup.sms.entity.User;
 import sup.sms.repository.MessageRepository;
 import sup.sms.utils.ConversationFacade;
+import sup.sms.utils.MessageFacade;
 
 /**
  *
@@ -26,6 +28,9 @@ public class MessageService{
 
     @EJB
     MessageRepository messageRepository;
+    
+    @EJB
+    UserService userService;
 
     public List<ConversationFacade> getConversations(User user) {
         //List of conversations
@@ -45,7 +50,7 @@ public class MessageService{
                 ConversationFacade conversationFacade = new ConversationFacade();
                 //Try to find in our contacts list
                 for (Contact myContact : myContacts) {
-                    if(myContact.getPhone().equals(interlocutorPhoneNumber) && !myContact.isDeleted()){
+                    if(myContact.getContactPhone().equals(interlocutorPhoneNumber) && !myContact.isContactDeleted()){
                         conversationFacade.setContact(myContact);
                     }
                 }
@@ -64,5 +69,23 @@ public class MessageService{
         return conversations;
     }
     
+    public List<Message> getConversation(User user, String interlocutorPhoneNumber){
+        return messageRepository.findConversation(user, interlocutorPhoneNumber);
+    }
     
+    public Message find(long message){
+        return messageRepository.find(message);
+    }
+    
+    public Message sendMessage(long userId, String interlocutorPhoneNumber, MessageFacade message){
+        User transmitter = userService.find(userId);
+        Message newMessage = new Message();
+        newMessage.setDeleted(false);
+        newMessage.setMessage(message.getMessage());
+        newMessage.setReceiver(interlocutorPhoneNumber);
+        newMessage.setTransmitter(transmitter.getPhone());
+        newMessage.setTransmissionDate(new Date());
+        
+        return messageRepository.save(newMessage);
+    }
 }

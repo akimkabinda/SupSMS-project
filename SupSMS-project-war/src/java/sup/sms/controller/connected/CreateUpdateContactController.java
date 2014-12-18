@@ -42,20 +42,20 @@ public class CreateUpdateContactController extends HttpServlet {
         if(id != 0){
             //Update
             Contact contactToUpdate = contactService.find(id);
-            if(!contactToUpdate.getFirstname().equals(firstname)){
-                contactToUpdate.setFirstname(firstname);
+            if(!contactToUpdate.getContactFirstname().equals(firstname)){
+                contactToUpdate.setContactFirstname(firstname);
             }
-            if(!contactToUpdate.getLastname().equals(lastname)){
-                contactToUpdate.setLastname(lastname);
+            if(!contactToUpdate.getContactLastname().equals(lastname)){
+                contactToUpdate.setContactLastname(lastname);
             }
-            if(!contactToUpdate.getEmail().equals(email)){
-                contactToUpdate.setEmail(email);
+            if(!contactToUpdate.getContactEmail().equals(email)){
+                contactToUpdate.setContactEmail(email);
             }
-            if(!contactToUpdate.getPhone().equals(phone)){
-                contactToUpdate.setPhone(phone);
+            if(!contactToUpdate.getContactPhone().equals(phone)){
+                contactToUpdate.setContactPhone(phone);
             }
-            if(!contactToUpdate.getAddress().equals(address)){
-                contactToUpdate.setAddress(address);
+            if(!contactToUpdate.getContactAddress().equals(address)){
+                contactToUpdate.setContactAddress(address);
             }
             
             String errors = contactService.ValidContactObject(contactToUpdate);
@@ -78,14 +78,14 @@ public class CreateUpdateContactController extends HttpServlet {
         }else{
             //Create
             Contact contact = new Contact()
-                    .setAddress(address)
-                    .setCreationdate(new Date())
-                    .setEmail(email)
-                    .setFirstname(firstname)
-                    .setLastname(lastname)
-                    .setPhone(phone)
-                    .setDeleted(false)
-                    .setOwner(user);
+                    .setContactAddress(address)
+                    .setContactCreationdate(new Date())
+                    .setContactEmail(email)
+                    .setContactFirstname(firstname)
+                    .setContactLastname(lastname)
+                    .setContactPhone(phone)
+                    .setContactDeleted(false)
+                    .setContactOwner(user);
             
             String errors = contactService.ValidContactObject(contact);
 

@@ -58,5 +58,13 @@ public class UserService{
         }
         return true;
     }
+    
+    public User findByPhone(String phone){
+        List<User> users = userRepository.findByPhone(phone);
+        if(users.size() > 0 || users.size() == 0){
+            return null;
+        }
+        return users.get(0);
+    }
 
 }

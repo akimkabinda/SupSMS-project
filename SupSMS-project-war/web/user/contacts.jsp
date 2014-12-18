@@ -25,10 +25,10 @@
         <tbody>
         <% for(Contact c : contacts){ %>
         <tr class="contact">
-                <td><%= c.getFirstname() %></br><%= c.getLastname()%></td>
-                <td><%= c.getEmail()%></td>
-                <td class="phone"><%= c.getPhone()%></td>
-                <td class="address"><%= c.getAddress()%></td>
+                <td><%= c.getContactFirstname()%></br><%= c.getContactLastname()%></td>
+                <td><%= c.getContactEmail()%></td>
+                <td class="phone"><%= c.getContactPhone()%></td>
+                <td class="address"><%= c.getContactAddress()%></td>
                 <td class="cellContentCentered">
                     <form action="" method="POST">
                         <input type="hidden" value="delete" name="type"/>

@@ -17,6 +17,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import sup.sms.validator.Phone;
 
 /**
@@ -24,117 +28,116 @@ import sup.sms.validator.Phone;
  * @author laurent
  */
 @Entity
+@XmlRootElement(name = "Contact")
 @Table(name = "CONTACT")
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer id; 
 
     @NotNull
     @Size(min = 1, max = 50)
-    private String lastname;
+    private String contactLastname;
     
     @NotNull
     @Size(min = 1, max = 50)
-    private String firstname;
+    private String contactFirstname;
     
     @NotNull
     @Size(min = 1, max = 100)
-    private String email;
+    private String contactEmail;
 
     @NotNull
     @Size(min = 1, max = 200)
-    private String address;
+    private String contactAddress;
     
     @Phone
     @NotNull
     @Size(min = 1, max = 20)
-    private String phone;
+    private String contactPhone;
 
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationdate;
+    private Date contactCreationdate;
     
-    private boolean deleted;
+    private boolean contactDeleted;
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public Contact setDeleted(boolean deleted) {
-        this.deleted = deleted;
-        return this;
-    }
-    
     @ManyToOne
-    private User owner;
-    
+    private User contactOwner;
+
     public Integer getId() {
         return id;
     }
 
-    public Contact setId(Integer id) {
-        this.id = id;return this;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getContactLastname() {
+        return contactLastname;
     }
 
-    public Contact setLastname(String lastname) {
-        this.lastname = lastname;return this;
+    public Contact setContactLastname(String contactLastname) {
+        this.contactLastname = contactLastname;return this;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getContactFirstname() {
+        return contactFirstname;
     }
 
-    public Contact setFirstname(String firstname) {
-        this.firstname = firstname;return this;
+    public Contact setContactFirstname(String contactFirstname) {
+        this.contactFirstname = contactFirstname;return this;
     }
 
-    public String getEmail() {
-        return email;
+    public String getContactEmail() {
+        return contactEmail;
     }
 
-    public Contact setEmail(String email) {
-        this.email = email;return this;
+    public Contact setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;return this;
     }
 
-    public String getAddress() {
-        return address;
+    public String getContactAddress() {
+        return contactAddress;
     }
 
-    public Contact setAddress(String address) {
-        this.address = address;return this;
+    public Contact setContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;return this;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getContactPhone() {
+        return contactPhone;
     }
 
-    public Contact setPhone(String phone) {
-        this.phone = phone;return this;
+    public Contact setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;return this;
     }
 
-    public Date getCreationdate() {
-        return creationdate;
+    public Date getContactCreationdate() {
+        return contactCreationdate;
     }
 
-    public Contact setCreationdate(Date creationdate) {
-        this.creationdate = creationdate;return this;
+    public Contact setContactCreationdate(Date contactCreationdate) {
+        this.contactCreationdate = contactCreationdate;return this;
     }
 
-    public User getOwner() {
-        return owner;
+    public boolean isContactDeleted() {
+        return contactDeleted;
     }
 
-    public Contact setOwner(User owner) {
-        this.owner = owner;
-        return this;
+    public Contact setContactDeleted(boolean contactDeleted) {
+        this.contactDeleted = contactDeleted;return this;
     }
 
+    public User getContactOwner() {
+        return contactOwner;
+    }
+
+    public Contact setContactOwner(User contactOwner) {
+        this.contactOwner = contactOwner;return this;
+    }
+    
     
 
     @Override

@@ -34,7 +34,7 @@ public class NotConnectedFilter implements Filter{
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         
         if(httpRequest.getSession().getAttribute("user") != null) {
-            httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/app");
+            httpResponse.sendRedirect(request.getServletContext().getContextPath() + "/app/conversation");
         } else {
             chain.doFilter(request, response);
         }

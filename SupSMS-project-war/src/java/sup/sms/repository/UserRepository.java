@@ -98,4 +98,19 @@ public class UserRepository{
         user.setDeleted(true);
         em.merge(user);
     }
+    
+    public List<User> findByPhone(String phone) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<User> query = 
+			criteriaBuilder.createQuery(User.class);
+        Root<User> user = query.from(User.class);
+        
+        Predicate phoneFilter = criteriaBuilder.equal(user.get(User_.phone), phone);
+        Predicate notDeleted = criteriaBuilder.equal(user.get(User_.deleted), false);
+        Predicate filter = criteriaBuilder.and(phoneFilter, notDeleted);
+        
+        query.where(filter);
+
+        return em.createQuery(query).getResultList();
+    }
 }

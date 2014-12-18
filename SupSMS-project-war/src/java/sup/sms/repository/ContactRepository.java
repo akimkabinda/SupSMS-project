@@ -16,10 +16,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import sup.sms.entity.Contact;
 import sup.sms.entity.Contact_;
-import sup.sms.entity.Message;
-import sup.sms.entity.Message_;
 import sup.sms.entity.User;
-import sup.sms.entity.User_;
 
 /**
  *
@@ -46,8 +43,8 @@ public class ContactRepository {
 			criteriaBuilder.createQuery(Contact.class);
         Root<Contact> contact = query.from(Contact.class);
         
-        Predicate ownerFilter = criteriaBuilder.equal(contact.get(Contact_.owner), owner);
-        Predicate notDeletedFilter = criteriaBuilder.equal(contact.get(Contact_.deleted), false);
+        Predicate ownerFilter = criteriaBuilder.equal(contact.get(Contact_.contactOwner), owner);
+        Predicate notDeletedFilter = criteriaBuilder.equal(contact.get(Contact_.contactDeleted), false);
         Predicate filter = criteriaBuilder.and(ownerFilter, notDeletedFilter);
         
         query.where(filter);
@@ -56,7 +53,7 @@ public class ContactRepository {
     }
     
     public void delete(Contact contact){
-        contact.setDeleted(true);
+        contact.setContactDeleted(true);
         em.merge(contact);
     }
     

@@ -10,7 +10,8 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
-import sup.sms.controller.api.UserService;
+import sup.sms.controller.api.ClientService;
+import sup.sms.controller.api.MessageApiService;
 
 /**
  *
@@ -21,7 +22,7 @@ public class JerseyConfigs extends Application{
     @Override
     public Set<Class<?>> getClasses(){
         return new HashSet<Class<?>>(
-            Arrays.asList(UserService.class)
+            Arrays.asList(ClientService.class, MessageApiService.class)
         );
     }
 }

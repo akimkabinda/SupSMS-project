@@ -29,7 +29,7 @@
                 <% for(ConversationFacade c : conversations){ %>
                     <tr>
                         <td class="contact">
-                            <span class="desc"><%= c.getContact() != null ? c.getContact().getFirstname() + " " + c.getContact().getLastname() : c.getUnknownContact() %></span>
+                            <span class="desc"><%= c.getContact() != null ? c.getContact().getContactFirstname()+ " " + c.getContact().getContactLastname(): c.getUnknownContact() %></span>
                             <span class="phone">(<%= c.getUnknownContact() %>)</span>
                         </td>
                         <td class="messageCount cellContentCentered"><%= c.getMessageCount() %></td>

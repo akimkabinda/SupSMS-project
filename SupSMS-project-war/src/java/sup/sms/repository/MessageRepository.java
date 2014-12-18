@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import sup.sms.entity.Contact;
 import sup.sms.entity.Message;
 import sup.sms.entity.Message_;
 import sup.sms.entity.User;
@@ -98,11 +99,22 @@ public class MessageRepository {
         Predicate interlocutorAsReceiver = criteriaBuilder.equal(message.get(Message_.receiver), interlocutorPhoneNumber);
         Predicate interlocutorFilter = criteriaBuilder.or(interlocutorAsTransmitter, interlocutorAsReceiver);
         
-        Predicate finalFilter = criteriaBuilder.and(userFilter, interlocutorFilter);
+        Predicate notDeleted = criteriaBuilder.equal(message.get(Message_.deleted), false);
+        
+        Predicate finalFilter = criteriaBuilder.and(userFilter, interlocutorFilter, notDeleted);
         
         query.where(finalFilter);
         query.orderBy(criteriaBuilder.asc(message.get(Message_.transmissionDate)));
         
         return em.createQuery(query).getResultList();
+    }
+    
+    public Message find(long messageId){
+        return em.find(Message.class, messageId);
+    }
+    
+    public Message save(Message message){
+        em.persist(message);
+        return message;
     }
 }

@@ -6,7 +6,6 @@
 package sup.sms.controller.connected;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ import sup.sms.service.MessageService;
  *
  * @author laurent
  */
-@WebServlet(name = "ConversationController", urlPatterns = {"/app/conversation"})
+@WebServlet(name = "ConversationController", urlPatterns = {"/app","/app/conversation"})
 public class ConversationController extends HttpServlet {
 
     @EJB

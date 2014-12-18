@@ -78,3 +78,42 @@ table .fa.fa-remove {
   font-weight: bold;
   font-size: 15px;
 }
+#message .contact label {
+  width: 100%;
+}
+#message .messages {
+  height: 300px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#message .messages .message {
+  width: 100%;
+  word-wrap: break-word;
+  clear: both;
+}
+#message .messages .message .content {
+  min-width: 20%;
+  max-with: 100%;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+}
+#message .messages .message .iamSender {
+  float: right;
+  background-color: #d0f1ff;
+}
+#message .messages .message .iamReceiver {
+  float: left;
+  background-color: #d3fae4;
+}
+#message .input .form-group {
+  width: 100%;
+}
+#message .input .form-group input {
+  width: 100%;
+  height: 45px;
+  font-size: 18px;
+}
+#message .input button {
+  width: 100%;
+}
