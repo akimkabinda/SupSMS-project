@@ -1,3 +1,5 @@
+<%@page import="sup.sms.entity.Contact"%>
+<%@page import="java.util.List"%>
 <%@page import="sup.sms.entity.User"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -8,18 +10,20 @@
 <c:import url="../include/notifications.jsp"/>
 
 <% User user = (User)request.getSession().getAttribute("user"); %>
+<% List<Contact> contacts = (List<Contact>)request.getAttribute("contacts"); %>
 <% String interlocutorPhoneNumber = request.getParameter("interlocutor") != null ? request.getParameter("interlocutor") : ""; %>
 
-<div data-ng-app="sup.sms.message">
+<div data-ng-app="sup.sms.message" data-ng-cloak>
     <div id="message" data-ng-controller="messageCtrl">
         <h1>Message</h1>
-        {{error}}
+        <toaster-container></toaster-container>
+        <a href="/app/createUpdateContact" class="btn btn-default btn-lg">Add new contact</a>
         <div class="contact">
             <label for="contact">
-                <select class="form-control" id="contact">
-                    <option>Laurent</option>
-                    <option>Agathe</option>
-                    <option>Timothée</option>
+                <select class="form-control" id="contact" data-ng-change="changeContact()" data-ng-model="contactSelected">
+                    <% for(Contact c : contacts){ %>
+                        <option value="<%= c.getContactPhone() %>"><%= c.getContactFirstname() + " " + c.getContactLastname() + " (" + c.getContactPhone() + ")" %></option>
+                    <% } %>
                 </select>
             </label>
         </div>
@@ -40,7 +44,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-default btn-lg">Send</button>
+                        <button type="submit" data-ng-disabled="isEnabled" class="btn btn-default btn-lg">Send</button>
                     </div>
                 </div>
             </form>

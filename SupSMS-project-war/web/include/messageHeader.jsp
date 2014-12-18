@@ -9,6 +9,7 @@
     <link rel="icon" type="image/png" href="/core/img/favicon.png" />
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/core/libs/toastr.min.css"/>
     <link rel="stylesheet" type="text/css" href="/core/css/all.css"/>
 </head>
 <body>
